@@ -27,7 +27,7 @@ If vulnerabilities are found by `yarn npm audit`, Action triggered by push, sche
 |create_pr_comments|false|true|Flag to create pr comments when vulnerabilities are found|
 |dedupe_issues|false|false|Flag to de-dupe against open issues|
 |github_context|false|`${{ toJson(github) }}`|The `github` context|
-|github_token|true|N/A|GitHub Access Token.<br>${{ secrets.GITHUB_TOKEN }} is recommended.|
+|github_token|true|N/A|GitHub Access Token.<br>${{ secrets.MY_GITHUB_ACCESS_TOKEN }} is recommended.|
 |issue_assignees|false|N/A|Issue assignees (separated by commma)|
 |issue_labels|false|N/A|Issue labels (separated by commma)|
 |issue_title|false|npm audit found vulnerabilities|Issue title|
@@ -68,10 +68,11 @@ jobs:
       - uses: basaldev/yarn-npm-audit-action@v2
         with:
           audit_level: moderate
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          issue_assignees: oke-py
+          github_token: ${{ secrets.MY_GITHUB_ACCESS_TOKEN }}
+          issue_assignees: basal-luke
           issue_labels: vulnerability,test
           dedupe_issues: true
+          recursive_flag: true
 ```
 
 - - -
