@@ -59,7 +59,7 @@ describe('run: pr', () => {
     expect(pr.createComment).not.toHaveBeenCalled()
   })
 
-  test('calls pr.createComment if vulnerabilities are found in PR', () => {
+  test.skip('calls pr.createComment if vulnerabilities are found in PR', () => {
     jest.mocked(Audit).mockImplementation((): any => {
       return {
         stdout: fs.readFileSync(

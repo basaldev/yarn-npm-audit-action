@@ -29,7 +29,7 @@ describe('run', () => {
       }
     })
 
-    audit.run('low', 'false', 'false')
+    audit.run('low', 'false', 'false', 'true')
     expect(audit.foundVulnerability()).toBeTruthy()
   })
 
@@ -50,7 +50,7 @@ describe('run', () => {
       }
     })
 
-    audit.run('low', 'true', 'false')
+    audit.run('low', 'true', 'false', 'true')
     expect(audit.foundVulnerability()).toBeTruthy()
   })
 
@@ -71,7 +71,7 @@ describe('run', () => {
       }
     })
 
-    audit.run('low', 'false', 'true')
+    audit.run('low', 'false', 'true', 'true')
     expect(audit.foundVulnerability()).toBeTruthy()
   })
 
@@ -92,7 +92,7 @@ describe('run', () => {
       }
     })
 
-    audit.run('low', 'false', 'false')
+    audit.run('low', 'false', 'false', 'false')
     expect(audit.foundVulnerability()).toBeFalsy()
   })
 
@@ -111,7 +111,7 @@ describe('run', () => {
 
     expect.assertions(1)
     const e = new Error('Something is wrong')
-    expect(() => audit.run('low', 'false', 'false')).toThrowError(e)
+    expect(() => audit.run('low', 'false', 'false', 'true')).toThrowError(e)
   })
 
   test('throws an error if status is null', () => {
@@ -129,7 +129,7 @@ describe('run', () => {
 
     expect.assertions(1)
     const e = new Error('the subprocess terminated due to a signal.')
-    expect(() => audit.run('low', 'false', 'false')).toThrowError(e)
+    expect(() => audit.run('low', 'false', 'false', 'true')).toThrowError(e)
   })
 
   test('throws an error if stderr is null', () => {
@@ -147,6 +147,6 @@ describe('run', () => {
 
     expect.assertions(1)
     const e = new Error('Something is wrong')
-    expect(() => audit.run('low', 'false', 'false')).toThrowError(e)
+    expect(() => audit.run('low', 'false', 'false', 'true')).toThrowError(e)
   })
 })
