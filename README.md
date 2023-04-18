@@ -1,20 +1,20 @@
-# npm audit action
+# yarn npm audit action
 
-[![Coverage Status](https://coveralls.io/repos/github/oke-py/npm-audit-action/badge.svg?branch=main)](https://coveralls.io/github/oke-py/npm-audit-action?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/basaldev/yarn-npm-audit-action/badge.svg?branch=main)](https://coveralls.io/github/basaldev/yarn-npm-audit-action?branch=main)
 
-GitHub Action to run `npm audit`
+GitHub Action to run `yarn npm audit`
 
 ## Feature
 
 ### Create a Pull Request comment
 
-If vulnerabilities are found by `npm audit`, Action triggered by PR creates a comment.
+If vulnerabilities are found by `yarn npm audit`, Action triggered by PR creates a comment.
 
 ### Create an Issue
 
-If vulnerabilities are found by `npm audit`, Action triggered by push, schedule creates the following GitHub Issue.
+If vulnerabilities are found by `yarn npm audit`, Action triggered by push, schedule creates the following GitHub Issue.
 
-![image](https://github.com/oke-py/npm-audit-action/blob/main/issue.png)
+![image](https://github.com/basaldev/yarn-npm-audit-action/blob/main/issue.png)
 
 ## Usage
 
@@ -45,7 +45,7 @@ If vulnerabilities are found by `npm audit`, Action triggered by push, schedule 
 ## Example Workflow
 
 ```yaml
-name: npm audit
+name: yarn npm audit
 
 on:
   pull_request:
@@ -64,8 +64,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: install dependencies
-        run: npm ci
-      - uses: oke-py/npm-audit-action@v2
+        run: yarn install
+      - uses: basaldev/yarn-npm-audit-action@v2
         with:
           audit_level: moderate
           github_token: ${{ secrets.GITHUB_TOKEN }}

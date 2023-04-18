@@ -1,8 +1,8 @@
 {
-  "name": "npm-audit-action",
+  "name": "@basaldev/yarn-npm-audit-action",
   "version": "2.4.4",
   "private": true,
-  "description": "GitHub Action to run `npm audit`",
+  "description": "GitHub Action to run `yarn npm audit`",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oke-py/npm-audit-action"
+    "url": "git+https://github.com/basaldev/yarn-npm-audit-action"
   },
   "keywords": [
     "actions",
