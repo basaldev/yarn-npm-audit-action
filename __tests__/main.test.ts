@@ -16,7 +16,7 @@ describe('run: pr', () => {
     jest.mocked(Audit).mockClear()
     jest.mocked(pr).createComment.mockClear()
 
-    process.env.INPUT_AUDIT_LEVEL = 'low'
+    process.env.INPUT_SEVERITY_LEVEL = 'low'
     process.env.INPUT_PRODUCTION_FLAG = 'false'
     process.env.INPUT_JSON_FLAG = 'false'
     process.env.INPUT_GITHUB_CONTEXT =
@@ -33,7 +33,7 @@ describe('run: pr', () => {
           path.join(__dirname, 'testdata/audit/success.txt')
         ),
         status: 0,
-        run: (auditLevel: string): Promise<void> => {
+        run: (severityLevel: string): Promise<void> => {
           return Promise.resolve(void 0)
         },
         foundVulnerability: (): boolean => {
@@ -66,7 +66,7 @@ describe('run: pr', () => {
           path.join(__dirname, 'testdata/audit/error.txt')
         ),
         status: 1,
-        run: (auditLevel: string): Promise<void> => {
+        run: (severityLevel: string): Promise<void> => {
           return Promise.resolve(void 0)
         },
         foundVulnerability: (): boolean => {
@@ -101,7 +101,7 @@ describe('run: pr', () => {
           path.join(__dirname, 'testdata/audit/error.txt')
         ),
         status: 1,
-        run: (auditLevel: string): Promise<void> => {
+        run: (severityLevel: string): Promise<void> => {
           return Promise.resolve(void 0)
         },
         foundVulnerability: (): boolean => {
@@ -143,7 +143,7 @@ describe('run: issue', () => {
           path.join(__dirname, 'testdata/audit/error.txt')
         ),
         status: 1,
-        run: (auditLevel: string): Promise<void> => {
+        run: (severityLevel: string): Promise<void> => {
           return Promise.resolve(void 0)
         },
         foundVulnerability: (): boolean => {
