@@ -22,7 +22,7 @@ If vulnerabilities are found by `yarn npm audit`, Action triggered by push, sche
 
 |Parameter|Required|Default Value|Description|
 |:--:|:--:|:--:|:--|
-|severity|false|low|The value of `--severity` flag|
+|severity_level|false|low|The value of `--severity` flag|
 |create_issues|false|true|Flag to create issues when vulnerabilities are found|
 |create_pr_comments|false|true|Flag to create pr comments when vulnerabilities are found|
 |dedupe_issues|false|false|Flag to de-dupe against open issues|
@@ -67,7 +67,7 @@ jobs:
         run: yarn install
       - uses: basaldev/yarn-npm-audit-action@v2
         with:
-          audit_level: moderate
+          severity_level: moderate
           github_token: ${{ secrets.MY_GITHUB_ACCESS_TOKEN }}
           issue_assignees: basal-luke
           issue_labels: vulnerability,test

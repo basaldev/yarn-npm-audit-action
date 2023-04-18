@@ -2,7 +2,7 @@ name: 'yarn npm audit action'
 description: 'run yarn npm audit'
 author: 'basal-luke <luke@basal.dev>'
 inputs:
-  audit_level:
+  severity_level:
     description: 'The value of `--severity` flag'
     default: low
     required: false

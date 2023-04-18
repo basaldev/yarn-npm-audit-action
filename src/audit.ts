@@ -8,13 +8,13 @@ export class Audit {
   private status: number | null = null
 
   public run(
-    auditLevel: string,
+    severityLevel: string,
     productionFlag: string,
     jsonFlag: string,
     resursiveFlag: string
   ): void {
     try {
-      const auditOptions: Array<string> = ['audit', '--severity', auditLevel]
+      const auditOptions: Array<string> = ['audit', '--severity', severityLevel]
 
       const isWindowsEnvironment: boolean = process.platform == 'win32'
       const cmd: string = isWindowsEnvironment ? 'yarn npm.cmd' : 'yarn npm'

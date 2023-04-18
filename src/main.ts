@@ -19,14 +19,14 @@ export async function run(): Promise<void> {
     }
     core.info(`Current working directory: ${process.cwd()}`)
 
-    // get audit-level
-    const auditLevel = core.getInput('severity', {required: true})
+    // get severity-level
+    const severityLevel = core.getInput('severity', {required: true})
     if (
       !['critical', 'high', 'moderate', 'low', 'info', 'none'].includes(
-        auditLevel
+        severityLevel
       )
     ) {
-      throw new Error('Invalid input: severity')
+      throw new Error('Invalid input: severity_level')
     }
 
     const productionFlag = core.getInput('production_flag', {required: false})
@@ -46,7 +46,7 @@ export async function run(): Promise<void> {
 
     // run `npm audit`
     const audit = new Audit()
-    audit.run(auditLevel, productionFlag, jsonFlag, recursiveFlag)
+    audit.run(severityLevel, productionFlag, jsonFlag, recursiveFlag)
     core.info(audit.stdout)
     core.setOutput('npm_audit', audit.stdout)
 
