@@ -22,7 +22,7 @@ If vulnerabilities are found by `npm audit`, Action triggered by push, schedule 
 
 |Parameter|Required|Default Value|Description|
 |:--:|:--:|:--:|:--|
-|audit_level|false|low|The value of `--audit-level` flag|
+|severity|false|low|The value of `--severity` flag|
 |create_issues|false|true|Flag to create issues when vulnerabilities are found|
 |create_pr_comments|false|true|Flag to create pr comments when vulnerabilities are found|
 |dedupe_issues|false|false|Flag to de-dupe against open issues|
@@ -31,8 +31,9 @@ If vulnerabilities are found by `npm audit`, Action triggered by push, schedule 
 |issue_assignees|false|N/A|Issue assignees (separated by commma)|
 |issue_labels|false|N/A|Issue labels (separated by commma)|
 |issue_title|false|npm audit found vulnerabilities|Issue title|
-|json_flag|false|false|Run `npm audit` with `--json`|
-|production_flag|false|false|Run `npm audit` with `--omit=dev`|
+|json_flag|false|false|Run `yarn npm audit` with `--json`|
+|production_flag|false|false|Run `yarn npm audit` with `--environment production`|
+|recursive_flag|false|false|Run `yarn npm audit` with `--recursive`|
 |working_directory|false|N/A|The directory which contains package.json|
 
 ### Outputs
