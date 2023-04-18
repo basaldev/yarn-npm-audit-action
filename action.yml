@@ -1,9 +1,9 @@
-name: 'npm audit action'
-description: 'run npm audit'
-author: 'Naoki Oketani <okepy.naoki@gmail.com>'
+name: 'yarn npm audit action'
+description: 'run yarn npm audit'
+author: 'basal-luke <luke@basal.dev>'
 inputs:
   audit_level:
-    description: 'The value of `--audit-level` flag'
+    description: 'The value of `--severity` flag'
     default: low
     required: false
   create_issues:
@@ -36,11 +36,15 @@ inputs:
     default: 'npm audit found vulnerabilities'
     required: false
   json_flag:
-    description: 'Run `npm audit` with `--json`'
+    description: 'Run `yarn npm audit` with `--json`'
     default: 'false'
     required: false
   production_flag:
-    description: 'Run `npm audit` with `--omit=dev`'
+    description: 'Run `yarn npm audit` with `--environment=production`'
+    default: 'false'
+    required: false
+  recursive_flag:
+    description: 'Run `yarn npm audit` with `--recursive`'
     default: 'false'
     required: false
   working_directory:
