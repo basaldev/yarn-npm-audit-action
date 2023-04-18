@@ -10,20 +10,25 @@ export class Audit {
   public run(
     auditLevel: string,
     productionFlag: string,
-    jsonFlag: string
+    jsonFlag: string,
+    resursiveFlag: string
   ): void {
     try {
-      const auditOptions: Array<string> = ['audit', '--audit-level', auditLevel]
+      const auditOptions: Array<string> = ['audit', '--severity', auditLevel]
 
       const isWindowsEnvironment: boolean = process.platform == 'win32'
-      const cmd: string = isWindowsEnvironment ? 'npm.cmd' : 'npm'
+      const cmd: string = isWindowsEnvironment ? 'yarn npm.cmd' : 'yarn npm'
 
       if (productionFlag === 'true') {
-        auditOptions.push('--omit=dev')
+        auditOptions.push('--environment=production')
       }
 
       if (jsonFlag === 'true') {
         auditOptions.push('--json')
+      }
+
+      if (resursiveFlag === 'true') {
+        auditOptions.push('--recursive')
       }
 
       const result: SpawnSyncReturns<string> = spawnSync(cmd, auditOptions, {
