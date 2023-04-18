@@ -199,7 +199,7 @@ function run() {
             }
             core.info(`Current working directory: ${process.cwd()}`);
             // get severity-level
-            const severityLevel = core.getInput('severity', { required: true });
+            const severityLevel = core.getInput('severity_level', { required: true });
             if (!['critical', 'high', 'moderate', 'low', 'info', 'none'].includes(severityLevel)) {
                 throw new Error('Invalid input: severity_level');
             }
