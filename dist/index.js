@@ -19,16 +19,19 @@ class Audit {
         this.stdout = '';
         this.status = null;
     }
-    run(auditLevel, productionFlag, jsonFlag) {
+    run(auditLevel, productionFlag, jsonFlag, resursiveFlag) {
         try {
-            const auditOptions = ['audit', '--audit-level', auditLevel];
+            const auditOptions = ['audit', '--severity', auditLevel];
             const isWindowsEnvironment = process.platform == 'win32';
-            const cmd = isWindowsEnvironment ? 'npm.cmd' : 'npm';
+            const cmd = isWindowsEnvironment ? 'yarn npm.cmd' : 'yarn npm';
             if (productionFlag === 'true') {
-                auditOptions.push('--omit=dev');
+                auditOptions.push('--environment=production');
             }
             if (jsonFlag === 'true') {
                 auditOptions.push('--json');
+            }
+            if (resursiveFlag === 'true') {
+                auditOptions.push('--recursive');
             }
             const result = (0, child_process_1.spawnSync)(cmd, auditOptions, {
                 encoding: 'utf-8',
@@ -196,9 +199,9 @@ function run() {
             }
             core.info(`Current working directory: ${process.cwd()}`);
             // get audit-level
-            const auditLevel = core.getInput('audit_level', { required: true });
+            const auditLevel = core.getInput('severity', { required: true });
             if (!['critical', 'high', 'moderate', 'low', 'info', 'none'].includes(auditLevel)) {
-                throw new Error('Invalid input: audit_level');
+                throw new Error('Invalid input: severity');
             }
             const productionFlag = core.getInput('production_flag', { required: false });
             if (!['true', 'false'].includes(productionFlag)) {
@@ -208,9 +211,13 @@ function run() {
             if (!['true', 'false'].includes(jsonFlag)) {
                 throw new Error('Invalid input: json_flag');
             }
+            const recursiveFlag = core.getInput('recursive_flag', { required: false });
+            if (!['true', 'false'].includes(jsonFlag)) {
+                throw new Error('Invalid input: recursive_flag');
+            }
             // run `npm audit`
             const audit = new audit_1.Audit();
-            audit.run(auditLevel, productionFlag, jsonFlag);
+            audit.run(auditLevel, productionFlag, jsonFlag, recursiveFlag);
             core.info(audit.stdout);
             core.setOutput('npm_audit', audit.stdout);
             if (audit.foundVulnerability()) {
