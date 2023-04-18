@@ -19,9 +19,9 @@ class Audit {
         this.stdout = '';
         this.status = null;
     }
-    run(auditLevel, productionFlag, jsonFlag, resursiveFlag) {
+    run(severityLevel, productionFlag, jsonFlag, resursiveFlag) {
         try {
-            const auditOptions = ['audit', '--severity', auditLevel];
+            const auditOptions = ['audit', '--severity', severityLevel];
             const isWindowsEnvironment = process.platform == 'win32';
             const cmd = isWindowsEnvironment ? 'yarn npm.cmd' : 'yarn npm';
             if (productionFlag === 'true') {
@@ -198,10 +198,10 @@ function run() {
                 process.chdir(workingDirectory);
             }
             core.info(`Current working directory: ${process.cwd()}`);
-            // get audit-level
-            const auditLevel = core.getInput('severity', { required: true });
-            if (!['critical', 'high', 'moderate', 'low', 'info', 'none'].includes(auditLevel)) {
-                throw new Error('Invalid input: severity');
+            // get severity-level
+            const severityLevel = core.getInput('severity', { required: true });
+            if (!['critical', 'high', 'moderate', 'low', 'info', 'none'].includes(severityLevel)) {
+                throw new Error('Invalid input: severity_level');
             }
             const productionFlag = core.getInput('production_flag', { required: false });
             if (!['true', 'false'].includes(productionFlag)) {
@@ -217,7 +217,7 @@ function run() {
             }
             // run `npm audit`
             const audit = new audit_1.Audit();
-            audit.run(auditLevel, productionFlag, jsonFlag, recursiveFlag);
+            audit.run(severityLevel, productionFlag, jsonFlag, recursiveFlag);
             core.info(audit.stdout);
             core.setOutput('npm_audit', audit.stdout);
             if (audit.foundVulnerability()) {
